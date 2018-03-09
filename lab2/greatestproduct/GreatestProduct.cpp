@@ -6,13 +6,12 @@
 
 int GreatestProduct(const std::vector<int> &numbers, int k){
 
-    int max_product = 0;
+    int a = numbers[0], b = numbers[1];
 
-    for(int i=0; i<numbers.size(); i++){
-        if(k>numbers.size()) break;
+    for (int i=0; i<numbers.size(); i++)
+        for (int j=i+1; j<numbers.size(); j++)
+            if (numbers[i]*numbers[j] > a*b)
+                a = numbers[i], b = numbers[j];
 
-        if(numbers[i+k]/numbers[i] > max_product) max_product = numbers[i+k]/numbers[i];
-    }
-
-    return max_product;
+    return a*b;
 }

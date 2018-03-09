@@ -11,6 +11,6 @@
 
 using namespace std;
 
-bool is_palindrome(string str);
+bool IsPalindrome(string str);
 
 #endif //JIMP_EXERCISES_PALINDROME_H

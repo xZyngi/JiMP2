@@ -21,7 +21,7 @@ int main(){
         string word_to_check = "";
         cin >> word_to_check;
 
-        cout << is_palindrome(word_to_check) << endl;
+        cout << IsPalindrome(word_to_check) << endl;
     }
 
     return 0;

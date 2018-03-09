@@ -4,11 +4,11 @@
 
 #include "ReverseString.h"
 
-string reverse(string str){
+string Reverse(string str){
     const char *character = str.c_str();
     size_t size = str.size();
 
     if (character[0] == '\0') return "";
     string reverse_string = str.substr(1,size - 1 );
-    return reverse(reverse_string) + str[0];
+    return Reverse(reverse_string) + str[0];
 }

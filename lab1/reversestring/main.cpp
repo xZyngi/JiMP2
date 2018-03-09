@@ -10,7 +10,7 @@ using namespace std;
 
 int main(){
 
-    cout << reverse("Kappa") << endl;
+    cout << Reverse("Kappa") << endl;
 
     return 0;
 }

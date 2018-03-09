@@ -10,6 +10,6 @@
 
 using namespace std;
 
-string reverse(string str);
+string Reverse(string str);
 
 #endif //JIMP_EXERCISES_REVERSESTRING_H

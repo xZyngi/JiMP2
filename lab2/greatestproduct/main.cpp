@@ -14,13 +14,11 @@ int main(){
 
     cin >> amount_of_elements;
 
-    std::vector<int> numbers; //utworzenie nowej tablicy rozszerzalnej
+    std::vector<int> numbers;
 
     for(int i=0; i<amount_of_elements; i++) {
         cin >> get_element;
-        if(i==0)
-            numbers.push_back(1);
-        numbers.push_back(get_element * numbers[i]);
+        numbers.push_back(get_element);
     }
 
     cin >> k;
