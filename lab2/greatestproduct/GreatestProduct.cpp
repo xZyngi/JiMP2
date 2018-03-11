@@ -8,7 +8,7 @@ int GreatestProduct(const std::vector<int> &numbers, int k){
 
     std::vector<int> sorted_numbers;
 
-    int greatest_product = 0;
+    int greatest_product = -9999;
 
     for(int i=0; i<numbers.size(); i++){
         auto position = std::upper_bound(sorted_numbers.cbegin(), sorted_numbers.cend(), numbers[i]);
@@ -21,7 +21,7 @@ int GreatestProduct(const std::vector<int> &numbers, int k){
 
     cout << endl << endl;
 
-    /*
+
     std::vector<int> plus_numbers;
     std::vector<int> minus_numbers;
 
@@ -35,8 +35,6 @@ int GreatestProduct(const std::vector<int> &numbers, int k){
             minus_numbers.insert(position, numbers[i]);
         }
     }
-
-    int greatest_product = 0;
 
     if(plus_numbers.size() > 0) greatest_product = plus_numbers[0];
     if(minus_numbers.size() > 0) greatest_product = minus_numbers[0];
@@ -84,8 +82,9 @@ int GreatestProduct(const std::vector<int> &numbers, int k){
             if(expression > greatest_product)
                 greatest_product = expression;
         }
+            
     }
-    */
+
 
     return  greatest_product;
 }
