@@ -82,7 +82,7 @@ int GreatestProduct(const std::vector<int> &numbers, int k){
             if(expression > greatest_product)
                 greatest_product = expression;
         }
-            
+
     }
 
 
