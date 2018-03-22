@@ -21,7 +21,7 @@ int main(){
     root->right = datastructures::InsertLeftChild(move(root->right), datastructures::CreateLeaf(897));
     root->right = datastructures::InsertRightChild(move(root->right), datastructures::CreateLeaf(761));
 
-    datastructures::DumpTree(root);
+    cout << endl << endl << datastructures::DumpTree(root);
 
     return 0;
 }
