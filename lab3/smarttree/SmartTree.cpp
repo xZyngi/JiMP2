@@ -43,14 +43,12 @@ namespace datastructures {
         serialized_tree+="[" + to_string(tree->value) + " ";
 
         //LEWA!
-
         if (tree->left == NULL)
             serialized_tree+="[none] ";
         else
             serialized_tree+=DumpTree(tree->left) + " ";
 
         //PRAWA!
-
         if (tree->right == NULL)
             serialized_tree+="[none]";
         else
