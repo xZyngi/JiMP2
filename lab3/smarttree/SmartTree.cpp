@@ -2,6 +2,7 @@
 // Created by zyngi on 21.03.18.
 //
 
+#include <sstream>
 #include "SmartTree.h"
 
 namespace datastructures {
@@ -30,7 +31,7 @@ namespace datastructures {
             PrintTreeInOrder(unique_ptr->left, out);
         }
 
-        //*out << unique_ptr->value << ", ";
+        *out << unique_ptr->value << ", ";
 
         if(unique_ptr->right){
             PrintTreeInOrder(unique_ptr->right, out);
@@ -59,5 +60,52 @@ namespace datastructures {
         return serialized_tree;
     }
 
-    std::unique_ptr <SmartTree> RestoreTree(const std::string &tree);
+    std::unique_ptr <SmartTree> RestoreTree(const std::string &tree){
+
+        int count=0;
+        string tab[tree.size()];
+        string tmp="";
+
+        if(tree == "[null]") return nullptr; //brak korzenia
+
+        for (int i=0; i<tree.size(); i++) {
+            if (isdigit(tree[i])){
+                for(int j=i; j<tree.size(); j++){
+                    if(!isdigit(tree[j])) break;
+                    tmp+=tree[j];
+
+                    i=j+1;
+                }
+                tmp+=",";
+            }
+            else if(tree[i]=='e'){
+                tmp+="#,";
+            }
+        }
+
+        SmartTree root = nullptr;
+        queue<SmartTree> q;
+        q.push(root);
+        string::iterator first = tmp.begin();
+        while (first != tmp.end()) {
+            SmartTree pp = q.front();
+            if (*first == '#') {
+                pp = nullptr;
+                advance(first, 2);
+            }
+            else {
+                string::iterator last = find(first, tmp.end(), ',');
+                int val = stoi(string(first, last));
+                pp = new SmartTree(val);
+                q.push(&((*pp)->left));
+                q.push(&((*pp)->right));
+                first = next(last);
+            }
+            q.pop();
+        }
+
+
+
+        return nullptr;
+    }
 }
