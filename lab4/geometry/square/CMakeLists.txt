@@ -5,7 +5,7 @@ set(HEDEAR_FILES Square.h)
 set(SOURCE_FILES Square.cpp)
 
 add_library(libsquare STATIC ${SOURCE_FILES})
-target_include_directories(libsquare PUBLIC .)
+target_include_directories(libsquare PUBLIC ../../square)
 
 add_executable(square ${SOURCE_FILES} main.cpp)
 
