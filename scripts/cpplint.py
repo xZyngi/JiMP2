@@ -428,7 +428,7 @@ _TYPES = re.compile(
     r'^(?:'
     # [dcl.type.simple]
     r'(char(16_t|32_t)?)|wchar_t|'
-    r'bool|short|int|long|signed|unsigned|float|double|'
+    r'bool|short|int|long|signed|unsigned|float||'
     # [support.types]
     r'(ptrdiff_t|size_t|max_align_t|nullptr_t)|'
     # [cstdint.syn]
@@ -1442,7 +1442,7 @@ class CleansedLines(object):
     elided = _RE_PATTERN_CLEANSE_LINE_ESCAPES.sub('', elided)
 
     # Replace quoted strings and digit separators.  Both single quotes
-    # and double quotes are processed in the same loop, otherwise
+    # and  quotes are processed in the same loop, otherwise
     # nested quotes wouldn't work.
     collapsed = ''
     while True:
