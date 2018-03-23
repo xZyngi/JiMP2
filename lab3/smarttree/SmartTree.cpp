@@ -62,6 +62,64 @@ namespace datastructures {
 
     std::unique_ptr <SmartTree> RestoreTree(const std::string &tree){
 
+        /*
+        int count=0;
+        string tab[tree.size()];
+        string tmp="";
+
+        if(tree == "[null]") return nullptr; //brak korzenia
+
+        for (int i=0; i<tree.size(); i++) {
+            tmp="";
+            if (isdigit(tree[i])){
+                for(int j=i; j<tree.size(); j++){
+                    if(!isdigit(tree[j])) break;
+                    tmp+=tree[j];
+
+                    i=j+1;
+                }
+                tab[count] = tmp;
+                tab[count+1] = "finish";
+                count++;
+            }
+            else if(tree[i]=='e'){
+                tab[count] = "null";
+                tab[count+1] = "finish";
+                count++;
+            }
+        }
+*/
+        //unique_ptr<SmartTree> root;
+        //unique_ptr<SmartTree> head;
+        //root = InsertLeftChild(move(root), CreateLeaf(100));
+        //root = InsertRightChild(move(root), CreateLeaf(88));
+        //root->left = InsertLeftChild(move(root->left), CreateLeaf(1234));
+        //root->left = InsertRightChild(move(root->left), CreateLeaf(4321));
+        //root->right = InsertLeftChild(move(root->right), CreateLeaf(897));
+        //root->right = InsertRightChild(move(root->right), CreateLeaf(761));
+/*
+
+        bool going_down = true;
+        int level = 1;
+        int liczenie = 1;
+
+        count = 1;
+        while(tab[liczenie]!="finish") {
+
+
+            cout << tab[liczenie] << " ";
+            liczenie++;
+        }
+
+        cout << endl;
+
+
+        unique_ptr<SmartTree> root;
+        int start = 0;
+        datastructures::help(tab, &start);
+*/
+
+
         int count=0;
         string tab[tree.size()];
         string tmp="";
@@ -83,29 +141,33 @@ namespace datastructures {
             }
         }
 
-        SmartTree root = nullptr;
+
+        unique_ptr <SmartTree> root;
         queue<SmartTree> q;
-        q.push(root);
-        string::iterator first = tmp.begin();
-        while (first != tmp.end()) {
-            SmartTree pp = q.front();
-            if (*first == '#') {
-                pp = nullptr;
-                advance(first, 2);
+
+        int first = 0, last = 0;
+        while (first != tmp.length()) {
+
+            if (tmp[first] == '#') {
+                root = nullptr;
             }
             else {
-                string::iterator last = find(first, tmp.end(), ',');
-                int val = stoi(string(first, last));
-                pp = new SmartTree(val);
-                q.push(&((*pp)->left));
-                q.push(&((*pp)->right));
-                first = next(last);
+                string pom = "";
+                while(tmp[last] != ',') {
+                    pom+=tmp[last];
+                    last++;
+                }
+
+                if(pom != "#") {
+                    int val = stoi(pom);
+                    root = InsertLeftChild(move(root), CreateLeaf(val));
+                    root = InsertRightChild(move(root), CreateLeaf(val));
+                }
+
+                first = last;
             }
-            q.pop();
         }
 
-
-
-        return nullptr;
+        return root;
     }
 }
