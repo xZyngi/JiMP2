@@ -28,7 +28,6 @@ namespace nets {
             string element_to_change = "{{" + element->first + "}}";
             while (text_tmp.find("{{" + element->first + "}}") != string::npos) {
                 text_tmp.replace(text_tmp.find("{{" + element->first + "}}"), element->first.length() + 4,  element->second.substr(0, 1) + "##" + element->second.substr(1, element->second.size() - 1));
-
             }
         }
 
