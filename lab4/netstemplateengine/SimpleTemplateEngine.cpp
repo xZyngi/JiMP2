@@ -24,6 +24,7 @@ namespace nets {
 
         string text_tmp = text;
 
+        //Podmianka modelów do stringu
         for(auto element = model.begin(); element != model.end(); ++element){
             string element_to_change = "{{" + element->first + "}}";
             while (text_tmp.find("{{" + element->first + "}}") != string::npos) {
@@ -31,10 +32,12 @@ namespace nets {
             }
         }
 
+        //Poprawka stringu do zwracania
         while (text_tmp.find("##") != string::npos) {
             text_tmp.erase(text_tmp.find("##"), 2);
         }
 
+        //Usuwanie templatek, które nie zostały podmienione
         int begin=0, end=0;
         while(begin <= text_tmp.length() && end <= text_tmp.length()){
             if(text_tmp[begin] == '{' && text_tmp[begin+1] == '{'){
