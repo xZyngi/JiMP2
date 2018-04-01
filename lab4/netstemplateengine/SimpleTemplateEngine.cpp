@@ -27,8 +27,13 @@ namespace nets {
         for(auto element = model.begin(); element != model.end(); ++element){
             string element_to_change = "{{" + element->first + "}}";
             while (text_tmp.find("{{" + element->first + "}}") != string::npos) {
-                text_tmp.replace(text_tmp.find("{{" + element->first + "}}"), element->first.length() + 4, element->second);
+                text_tmp.replace(text_tmp.find("{{" + element->first + "}}"), element->first.length() + 4,  element->second.substr(0, 1) + "##" + element->second.substr(1, element->second.size() - 1));
+
             }
+        }
+
+        while (text_tmp.find("##") != string::npos) {
+            text_tmp.erase(text_tmp.find("##"), 2);
         }
 
         int begin=0, end=0;
