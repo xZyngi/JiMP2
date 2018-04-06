@@ -9,6 +9,8 @@
 #include "Square.h"
 
 using namespace std;
+using geometry::Point;
+using geometry::Square;
 
 int main() {
 
