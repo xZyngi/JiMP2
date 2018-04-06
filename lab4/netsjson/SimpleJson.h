@@ -28,11 +28,11 @@ namespace nets {
         string ToString() const;
     private:
         map<string, JsonValue> m_json;
-        experimental::optional<int> i_json;
-        experimental::optional<double> d_json;
-        experimental::optional<bool> b_json;
-        experimental::optional<string> s_json;
-        experimental::optional<vector<JsonValue>> v_json;
+        int i_json;
+        double d_json;
+        bool b_json;
+        string s_json;
+        vector<JsonValue> v_json;
     };
 }
 
