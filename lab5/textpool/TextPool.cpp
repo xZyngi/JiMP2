@@ -10,15 +10,41 @@ namespace pool {
 
     }
 
-    TextPool::TextPool(initializer_list<string> str) {
+    TextPool::TextPool(std::initializer_list<std::experimental::string_view> pool) {
+        for(std::experimental::string_view v : pool) {
+            this->pool.emplace(v);
+        }
+    }
+
+    TextPool::TextPool(TextPool && other) {
+        pool = other.pool;
+        other.pool.clear();
+    }
+
+    TextPool & TextPool::operator=(TextPool && other) {
+        if(this == &other)
+            return *this;
+
+        pool = other.pool;
+        other.pool.clear();
+    }
+
+    TextPool::~TextPool() {
 
     }
 
     std::experimental::string_view TextPool::Intern(const std::string &str) {
-        return nullptr;
+        for(std::experimental::string_view v : pool){
+            if(v == str)
+                return *pool.emplace(str).first;
+        }
+
+        pool.insert(str);
+        
+        return *pool.emplace(str).first;
     }
 
     size_t TextPool::StoredStringCount() const {
-        return 0;
+        return pool.size();
     }
 }

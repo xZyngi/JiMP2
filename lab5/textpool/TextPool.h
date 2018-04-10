@@ -17,10 +17,17 @@ namespace pool{
     class TextPool{
     public:
         TextPool();
-        TextPool(initializer_list<string> str);
+        TextPool(std::initializer_list<std::experimental::string_view>);
+
+        TextPool(TextPool &&other);
+        TextPool &operator=(TextPool &&other);
+
+        ~TextPool();
 
         std::experimental::string_view Intern(const std::string &str);
         size_t StoredStringCount() const;
+    private:
+        std::set<std::experimental::string_view> pool;
     };
 }
 
