@@ -37,8 +37,7 @@ public:
     Matrix pow(int x);
 
 private:
-    complex<double> matrix; //TODO: Make 2D dynamic array
-
+    complex<double> ** matrix;
     int number_of_row_;
     int number_od_col_;
 };

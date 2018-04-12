@@ -9,7 +9,13 @@ Matrix::Matrix() {
 }
 
 Matrix::Matrix(int number_of_col, int number_of_row) {
+    number_od_col_ = number_of_col;
+    number_of_row_ = number_of_row;
 
+    matrix = new complex<double>*[number_of_row];
+    for(int i=0; i<number_of_row; ++i) {
+        matrix[i] = new complex<double>[number_of_col];
+    }
 }
 
 Matrix::Matrix(const std::string &str) {
