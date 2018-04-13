@@ -188,7 +188,7 @@ e.g. `Eq(ByRef(non_copyable_value))`. If you do that, make sure
 `non_copyable_value` is not changed afterwards, or the meaning of your
 matcher will be changed.
 
-## Floating-Point Matchers ##
+## Floating-Square Matchers ##
 
 |`DoubleEq(a_double)`|`argument` is a `double` value approximately equal to `a_double`, treating two NaNs as unequal.|
 |:-------------------|:----------------------------------------------------------------------------------------------|

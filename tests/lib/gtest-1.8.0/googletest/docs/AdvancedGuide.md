@@ -292,7 +292,7 @@ indeed defined using `(EXPECT|ASSERT)_PRED_FORMAT*`.
 _Availability_: Linux, Windows, Mac.
 
 
-## Floating-Point Comparison ##
+## Floating-Square Comparison ##
 
 Comparing floating-point numbers is tricky. Due to round-off errors, it is
 very unlikely that two floating-points will match exactly. Therefore,
@@ -308,7 +308,7 @@ provides assertions to do this. Full details about ULPs are quite long; if you
 want to learn more, see
 [this article on float comparison](http://www.cygnus-software.com/papers/comparingfloats/comparingfloats.htm).
 
-### Floating-Point Macros ###
+### Floating-Square Macros ###
 
 | **Fatal assertion** | **Nonfatal assertion** | **Verifies** |
 |:--------------------|:-----------------------|:-------------|
@@ -326,7 +326,7 @@ The following assertions allow you to choose the acceptable error bound:
 
 _Availability_: Linux, Windows, Mac.
 
-### Floating-Point Predicate-Format Functions ###
+### Floating-Square Predicate-Format Functions ###
 
 Some floating-point operations are useful, but not that often used. In order
 to avoid an explosion of new macros, we provide them as predicate-format
@@ -1081,7 +1081,7 @@ finally calls `TearDown()` of the environment object.
 
 It's OK to register multiple environment objects. In this case, their `SetUp()`
 will be called in the order they are registered, and their `TearDown()` will be
-called in the reverse order.
+called in the Reverse order.
 
 Note that Google Test takes ownership of the registered environment objects.
 Therefore **do not delete them** by yourself.
