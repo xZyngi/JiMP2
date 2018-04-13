@@ -1,46 +1,69 @@
 //
-// Created by zyngjaku on 06.04.18.
+// Created by kamila on 10.04.18.
 //
 
 #ifndef JIMP_EXERCISES_MATRIX_H
 #define JIMP_EXERCISES_MATRIX_H
 
-#include <iostream>
-#include <vector>
 #include <complex>
+#include <vector>
 
-using namespace std;
+namespace algebra {
+    class Matrix {
+    public:
+        // param constructor
+        Matrix (int rows, int cols);
+        // default constructor
+        Matrix ();
+        //Matlab constructor
+        Matrix (const std::string &str);
+        //initializer list constructor
+        Matrix (const std::initializer_list<std::vector<std::complex<double>>> &elements);
+        ~Matrix();
 
-class Matrix {
-public:
-    Matrix();
-    Matrix (int number_of_col, int number_of_row);
 
-    Matrix (const std::string &str);
-    Matrix (const std::initializer_list<std::vector<std::complex<double>>> &elements);
 
-    Matrix(const Matrix &matrix);
-    Matrix &operator=(const Matrix &matrix);
+        //copy constructor
+        Matrix(const Matrix &matrix);
+        //copy assignment??
+        Matrix &operator=(const Matrix &matrix);
 
-    std::pair<size_t , size_t > size() const;
-    std::string print() const;
-    std::complex<double> pop(int cols, int rows) const;
+        //get size
+        std::pair<size_t , size_t > Size()const;
+        // print
+        std::string Print() const;
+        //pop elemnet
+        std::complex<double> Pop(int row, int col)const;
 
-    void Set(int cols, int rows, std::complex<double> val);
 
-    Matrix add(const Matrix &mat2) const;
-    Matrix sub(const Matrix &mat2);
-    Matrix mul(Matrix mat2);
-    Matrix mul(int x);
-    Matrix div( Matrix mat2);
-    Matrix div(int x);
-    Matrix pow(int x);
+        //set element // bool?
+        void Set(int row, int col, std::complex<double> val);
 
-private:
-    complex<double> ** matrix;
-    int number_of_row_;
-    int number_od_col_;
-};
+        // +
+        Matrix Add(const Matrix &mat2)const;//?
+        // -
+        Matrix Sub(const Matrix &mat2);
+        // *
+        Matrix Mul(Matrix mat2);
+        Matrix Mul(int x);
+        // :
+        Matrix Div( Matrix mat2);
+        Matrix Div(int x);
+        // ^
+        Matrix Pow(int x);
+
+
+
+    private:
+        std::vector<std::vector<std::complex<double>>> mat_; //size row
+
+
+        int rows_;
+        int cols_;
+
+    };
+}
+
 
 
 #endif //JIMP_EXERCISES_MATRIX_H
