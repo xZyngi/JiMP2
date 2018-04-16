@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "Point.h"
+#include "WordCounter.h"
 
 using namespace std;
 

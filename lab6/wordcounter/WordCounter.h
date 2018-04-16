@@ -1,0 +1,8 @@
+//
+// Created by zyngi on 16.04.18.
+//
+
+#ifndef JIMP_EXERCISES_WORDCOUNTER_H
+#define JIMP_EXERCISES_WORDCOUNTER_H
+
+#endif //JIMP_EXERCISES_WORDCOUNTER_H
