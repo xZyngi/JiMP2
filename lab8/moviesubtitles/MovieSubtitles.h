@@ -1,39 +1,90 @@
 //
-// Created by zyngi on 26.04.18.
+// Created by kamila on 30.04.18.
 //
 
-#ifndef JIMP_EXERCISES_MICRODVDSUBTITLES_H
-#define JIMP_EXERCISES_MICRODVDSUBTITLES_H
+#ifndef JIMP_EXERCISES_MOVIESUBTITLES_H
+#define JIMP_EXERCISES_MOVIESUBTITLES_H
 
 #include <iostream>
-#include <string>
+#include <regex>
+#include <exception>
+namespace moviesubs{
 
-using namespace std;
 
-namespace moviesubs {
-
-    class NegativeFrameAfterShift{
-        //Zła klatka
-    };
-
-    class SubtitleEndBeforeStart{
-        //Napis konczy sie przed wyswietleniem
-    };
-
-    class InvalidSubtitleLineFormat{
-        //Zły format wpisany
-    };
-
-    class MicroDvdSubtitles {
+    class SubtitlesException: public std::invalid_argument{
     public:
-        MicroDvdSubtitles();
-        MicroDvdSubtitles(string init_sub);
-        ~MicroDvdSubtitles();
 
-        void delay(const char* in, const char* out,int delay, int fps);
-    private:
-        string init_sub;
+        SubtitlesException (std::string subtitle, int line_numb):invalid_argument(subtitle),line_(line_numb){}
+        int LineAt()const{ return line_;}
+
+        int line_;
     };
+
+    class NegativeFrameAfterShift: public SubtitlesException{
+    public:
+        explicit NegativeFrameAfterShift (int line_numb):SubtitlesException(" NegativeFrameAfterShift", line_numb){}
+
+    };
+
+    class SubtitleEndBeforeStart: public SubtitlesException{
+    public:
+        SubtitleEndBeforeStart ( std::string subtitle,int line_numb):SubtitlesException("At line "+ std::to_string(line_numb)+": " + subtitle, line_numb){}
+
+
+    };
+
+    class InvalidSubtitleLineFormat: public SubtitlesException{
+    public:
+        explicit InvalidSubtitleLineFormat ( std::string subtitle,int line_numb):SubtitlesException(subtitle, line_numb){}
+
+
+
+    };
+
+    class OutOfOrderFrames : public SubtitlesException{
+    public:
+        OutOfOrderFrames (int line_numb):SubtitlesException("OutOfOrderFrames", line_numb){}
+
+
+    };
+    class MissingTimeSpecification : public SubtitlesException{ //testy przejdą bez tego
+    public:
+
+
+    };
+
+
+
+
+    class MovieSubtitles{
+    public:
+        virtual void ShiftAllSubtitlesBy (int mili, int framerate, std::stringstream *in, std::stringstream * out)=0;
+
+
+    };
+
+    class MicroDvdSubtitles: public MovieSubtitles{
+    public:
+        MicroDvdSubtitles()= default;
+
+        virtual void ShiftAllSubtitlesBy (int mili, int framerate, std::stringstream *in, std::stringstream * out) override ;
+
+
+    };
+
+    class SubRipSubtitles: public MovieSubtitles{
+    public:
+
+        virtual void ShiftAllSubtitlesBy (int mili, int framerate, std::stringstream *in, std::stringstream * out) override ;
+        std::string FormatMiliSec(int milisec);
+    };
+
+
+
+
+
+
 }
 
-#endif //JIMP_EXERCISES_MICRODVDSUBTITLES_H
+
+#endif //JIMP_EXERCISES_MOVIESUBTITLES_H
