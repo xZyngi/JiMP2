@@ -5,47 +5,40 @@
 #ifndef JIMP_EXERCISES_TEACHERHASH_H
 #define JIMP_EXERCISES_TEACHERHASH_H
 
-namespace academia{
+#include <string>
+#include <utility>
 
+using namespace std;
 
-
-    template <class Id>
-    class TeacherId{
-        //TeacherId should be castable to Int
+namespace academia {
+    class TeacherId {
     public:
-        //constructor
-        TeacherId(Id id): id_(id){}
-        // (=) operator
-
-        //(==) operator
-
+        TeacherId(int id);
+        operator int() const;
+        bool operator!=(const TeacherId& other) const;
     private:
-        Id id_;
+        int id_;
     };
 
-    template <class Id>
-    class Teacher{
+    class Teacher {
     public:
-        // constructor
-
-        //id
-
-        // name
-        // department
-        //  (=) operator ???
-
-        // (==) operator
-
-
-
+        Teacher(TeacherId id, string name, string depart);
+        TeacherId Id() const;
+        string Name() const;
+        string Department() const;
+        bool operator!=(const Teacher& other)const;
+        bool operator==(const Teacher& other)const;
+    private:
+        TeacherId id_;
+        string name_;
+        string depart_;
     };
-
 
     class TeacherHash {
     public:
+        TeacherHash()= default;
+        size_t operator()(Teacher teacher) const;
     };
 }
-
-
 
 #endif //JIMP_EXERCISES_TEACHERHASH_H
